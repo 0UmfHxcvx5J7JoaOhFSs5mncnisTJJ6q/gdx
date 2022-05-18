@@ -179,6 +179,7 @@ readGDX <- function(gdx,...,types=c("sets","equations","parameters","variables",
   types <- match.arg(types,several.ok=TRUE)
   
   allnames <- c(...)
+  message(allnames)
   if(length(allnames)==0) {
     if(format=="first_found") stop("For format \"first_found\" you have to explicitly give all possible names of the object you would like to read in!")
     name <- "*"
@@ -291,6 +292,7 @@ readGDX <- function(gdx,...,types=c("sets","equations","parameters","variables",
     return(NULL)
   }
   if(format=="simplest" & length(out)==1) {
+    message(cat(allnames, ': ', object.size(out[[1]]), '\n'))
     return(out[[1]]) 
   } else if(format=="first_found") {
     assigned=FALSE
@@ -309,8 +311,10 @@ readGDX <- function(gdx,...,types=c("sets","equations","parameters","variables",
       if(react=="error") stop("No element of ", paste(allnames,collapse=", ")," found in GDX!")
       return(NULL)
     }
+    message(cat(allnames, ': ', object.size(x), '\n'))
     return(x)
   } else {
+    message(cat(allnames, ': ', object.size(out), '\n'))
     return(out)
   }
 }
