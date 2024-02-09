@@ -11,9 +11,9 @@
                      # disregard variables on the Windows path
                      path <- grep("%", path, value = TRUE, fixed = TRUE,
                                   invert = TRUE)
-                     # append GAMSROOT (or empty if that does not exist) to make
-                     # sure igdx is called at least once
-                     path <- c(path, Sys.getenv("GAMSROOT"))
+                     # # append GAMSROOT (or empty if that does not exist) to make
+                     # # sure igdx is called at least once
+                     # path <- c(path, Sys.getenv("GAMSROOT"))
 
                      ok <- FALSE
                      for (p in path) {
@@ -21,7 +21,7 @@
                          break
                        }
                      }
-                   })
+                   }, append = TRUE)
 
   if (!ok) {
     # truncate igdx output to 132 characters per line
