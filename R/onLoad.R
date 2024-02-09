@@ -21,7 +21,8 @@
                          break
                        }
                      }
-                   }, append = TRUE)
+                   },
+                   append = TRUE)
 
   if (!ok) {
     # truncate igdx output to 132 characters per line
