@@ -2,7 +2,6 @@
 #' @importFrom withr with_output_sink
 .onLoad <- function(libname, pkgname) {
   tmp <- NULL
-  gamsroot <- Sys.getenv("GAMSROOT")
   with_output_sink(new = textConnection("tmp", "w", local = TRUE),
                    code = {
                      path <- strsplit(Sys.getenv("PATH"), .Platform$path.sep,
@@ -14,7 +13,7 @@
                                   invert = TRUE)
                      # append GAMSROOT (or empty if that does not exist) to make
                      # sure igdx is called at least once
-                     # path <- c(path, gamsroot)
+                     path <- c(path, Sys.getenv("GAMSROOT"))
 
                      ok <- FALSE
                      for (p in path) {
@@ -22,8 +21,7 @@
                          break
                        }
                      }
-                   },
-                   append = TRUE)
+                   })
 
   if (!ok) {
     # truncate igdx output to 132 characters per line
