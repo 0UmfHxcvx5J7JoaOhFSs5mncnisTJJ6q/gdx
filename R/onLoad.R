@@ -14,7 +14,7 @@
                      # append GAMSROOT (or empty if that does not exist) to make
                      # sure igdx is called at least once
                      # path <- c(path, Sys.getenv("GAMSROOT"))
-                     path <- c(path)
+                     path <- c(path, 'foo')
 
                      ok <- FALSE
                      for (p in path) {
